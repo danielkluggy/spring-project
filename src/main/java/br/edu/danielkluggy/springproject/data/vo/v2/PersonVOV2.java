@@ -1,38 +1,22 @@
-package br.edu.danielkluggy.springproject.model;
+package br.edu.danielkluggy.springproject.data.vo.v2;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "person")
-public class Person implements Serializable {
+public class PersonVOV2 implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(name = "first_name", nullable = false, length = 50)
 	private String firstName;
-	
-	@Column(name = "last_name", nullable = false, length = 50)
 	private String lastName;
-	
-	@Column(nullable = false, length = 100)
 	private String address;
-	
-	@Column(nullable = false, length = 10)
 	private String gender;
 	
-	public Person() {
+	//added
+	private Date birthday;
+	
+	public PersonVOV2() {
 	}
 
 	public Long getId() {
@@ -75,9 +59,17 @@ public class Person implements Serializable {
 		this.gender = gender;
 	}
 	
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, firstName, gender, id, lastName);
+		return Objects.hash(address, birthday, firstName, gender, id, lastName);
 	}
 
 	@Override
@@ -88,12 +80,10 @@ public class Person implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Person other = (Person) obj;
-		return Objects.equals(address, other.address) && Objects.equals(firstName, other.firstName)
-				&& Objects.equals(gender, other.gender) && Objects.equals(id, other.id)
-				&& Objects.equals(lastName, other.lastName);
+		PersonVOV2 other = (PersonVOV2) obj;
+		return Objects.equals(address, other.address) && Objects.equals(birthday, other.birthday)
+				&& Objects.equals(firstName, other.firstName) && Objects.equals(gender, other.gender)
+				&& Objects.equals(id, other.id) && Objects.equals(lastName, other.lastName);
 	}
 	
-	
-
 }
