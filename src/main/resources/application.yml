@@ -1,1 +1,18 @@
-
+spring:
+  datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/springproject?useTimezone=true&serverTimezone=UTC
+      username: root
+      password: admin
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+      jakarta:
+        persistence:
+          sharedCache:
+            mode: ALL
+#    open-in-view: true
+    show-sql: false
